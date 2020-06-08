@@ -8,11 +8,21 @@ import Question from './components/Question'
 
 function App() {
 
-    console.log(QuestionsData)
+    //console.log(QuestionsData)
+
 
     return (
         <div className="app">
             <h1>Mon QUIZZ</h1>
+            {
+                QuestionsData.questions.map(
+                    question =>
+                    <Question
+                        key={question.id}
+                        questionInfos={question}
+                    />
+                )
+            }
         </div>
     )
 }

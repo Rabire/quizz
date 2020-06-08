@@ -1,3 +1,10 @@
 .question {
     background-color: aqua;
+    margin-bottom: 10px;
 }
+
+.submit-btn {
+    background-color: chartreuse;
+}
+
+
