@@ -1,0 +1,36 @@
+{
+    "character": [
+        {
+            "name": "breach",
+            "img": "breach.png"
+        },
+        {
+            "name": "brimstone",
+            "img": "brimstone.png"
+        }, {
+            "name": "cypher",
+            "img": "cypher.png"
+        }, {
+            "name": "jett",
+            "img": "jett.png"
+        }, {
+            "name": "omen",
+            "img": "omen.png"
+        }, {
+            "name": "phoenix",
+            "img": "phoenix.png"
+        }, {
+            "name": "raze",
+            "img": "raze.png"
+        }, {
+            "name": "sage",
+            "img": "sage.png"
+        }, {
+            "name": "sova",
+            "img": "sova.png"
+        }, {
+            "name": "viper",
+            "img": "viper.png"
+        }
+    ]
+}
