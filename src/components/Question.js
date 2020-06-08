@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import './Question.css'
 
-import ProposedAnswer from './ProposedAnswer'
 
 function Question(props) {
     const questionInfos = props.questionInfos
@@ -14,13 +13,28 @@ function Question(props) {
         console.log("verrify this")
     }
 
+    console.log(proposedAnswers)
+
+    function toggleCheckAnswer(answerIndex) {
+        if (proposedAnswers.includes(answerIndex)) {
+            setProposedAnswers(proposedAnswers.filter((proposedAnswer) => (proposedAnswer !== answerIndex))) //remove value from proposedAnswers Array
+        } else {
+            setProposedAnswers([...proposedAnswers, answerIndex]) //push answerIndex in proposedAnswers Array
+        }
+    }
+
     const answersList = questionInfos.answers.map((answer, index) => 
-    <ProposedAnswer
+    <div
         key={index}
-        answer={answer}
-        proposedAnswers={proposedAnswers}
-        setProposedAnswers={setProposedAnswers}
-    />)
+        className="answer"
+        onClick={() => toggleCheckAnswer(index)}
+    >
+        {
+            proposedAnswers.includes(index) &&
+            <span>[X] </span>
+        }
+        {answer}
+    </div>)
 
     return(
         <div className="question">

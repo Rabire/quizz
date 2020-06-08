@@ -7,4 +7,12 @@
     background-color: chartreuse;
 }
 
+.answer {
+    background-color: cornflowerblue;
+}
+
+.answer:hover {
+    background-color: coral;
+    cursor: pointer;
+}
 
