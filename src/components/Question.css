@@ -16,3 +16,11 @@
     cursor: pointer;
 }
 
+.red {
+    color: red;
+}
+
+.submit-btn:hover {
+    background-color: darkslategray;
+    cursor: pointer;
+}

@@ -6,14 +6,20 @@ import './Question.css'
 function Question(props) {
     const questionInfos = props.questionInfos
     const [proposedAnswers, setProposedAnswers] = useState([])
+    const [answersIsTrue, setAnswersIsTrue] = useState(false)
 
-    //console.log(questionInfos.answers)
+    const indexOfCorrectAnswer = questionInfos.answers.indexOf(questionInfos.correctAnswers)
 
     function verrifyAnswers() {
-        console.log("verrify this")
+        console.log("verrifyAnswers")
+        if(proposedAnswers.includes(indexOfCorrectAnswer) && proposedAnswers.length === 1) {
+            setAnswersIsTrue(true)
+        } else {
+            setAnswersIsTrue(false)
+        }
     }
 
-    console.log(proposedAnswers)
+    //console.log(proposedAnswers)
 
     function toggleCheckAnswer(answerIndex) {
         if (proposedAnswers.includes(answerIndex)) {
@@ -38,7 +44,13 @@ function Question(props) {
 
     return(
         <div className="question">
-            <h3>{questionInfos.question}</h3>
+            <h3>
+                {questionInfos.question}
+                {
+                    answersIsTrue &&
+                    <span className="red"> Good Job</span>
+                }
+            </h3>
             {
                 questionInfos.type === "multiple" && 
                 answersList

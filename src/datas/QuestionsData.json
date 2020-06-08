@@ -9,7 +9,19 @@
                 "Thimbu",
                 "Le Wakanda"
             ],
-            "correctAnswers": ["Pretoria"]
+            "correctAnswers": "Pretoria"
+        },
+        {
+            "id": 2,
+            "type": "multiple",
+            "question": "Quelle est la capitale de la France",
+            "answers": [
+                "Lyon",
+                "Paris",
+                "Marseille",
+                "Perpignan"
+            ],
+            "correctAnswers": "Paris"
         }
     ]
 }
