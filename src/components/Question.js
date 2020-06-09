@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import './Question.css'
 
@@ -8,47 +8,16 @@ import BoolAnswers from './BoolAnswers'
 
 function Question(props) {
     const questionInfos = props.questionInfos
-    //console.log(questionInfos)
+
     const [proposedAnswers, setProposedAnswers] = useState([])
-    //console.log(proposedAnswers)
-    const [answersIsTrue, setAnswersIsTrue] = useState(false)
-
-    const [indexOfCorrectAnswer, setIndexOfCorrectAnswer] = useState()
-    const [AnswerIsFalse, setAnswerIsFalse] = useState(false)
-
-
-    useEffect( () => {
-        if (questionInfos.type === "multiple") {
-            setIndexOfCorrectAnswer(questionInfos.answers.indexOf(questionInfos.correctAnswers))
-        }
-    }, [])
-
-    //const indexOfCorrectAnswer = questionInfos.answers.indexOf(questionInfos.correctAnswers)
-
-    function falseAnswer() {
-        setAnswersIsTrue(false)
-        setAnswerIsFalse(true)
-    }
-
-    function rightAnswer() {
-        setAnswersIsTrue(true)
-        setAnswerIsFalse(false)
-    }
+    const [answersIsTrue, setAnswersIsTrue] = useState()
 
     function verrifyAnswers() {
-        //console.log("verification...")
-        if(questionInfos.type === "multiple") {
-            if(proposedAnswers.includes(indexOfCorrectAnswer) && proposedAnswers.length === 1) {
-                rightAnswer()
-            } else {
-                falseAnswer()
-            }
-        } else if (questionInfos.type === "bool") {
-            if(proposedAnswers === questionInfos.correctAnswers) {
-                rightAnswer()
-            } else {
-                falseAnswer()
-            }
+        console.log("verification...")
+        if(proposedAnswers === questionInfos.correctAnswers) {
+            setAnswersIsTrue(true)
+        } else {
+            setAnswersIsTrue(false)
         }
     }
 
@@ -60,7 +29,6 @@ function Question(props) {
             proposedAnswers={proposedAnswers}
             setProposedAnswers={setProposedAnswers}
             answer={answer}
-            index={index}
         />)
     }
 
@@ -71,11 +39,11 @@ function Question(props) {
                 {questionInfos.question}
                 {
                     answersIsTrue &&
-                    <span className="red"> Good Job</span>
+                    <span className="red"> Good Job !</span>
                 }
                 {
-                    AnswerIsFalse &&
-                    <span className="red"> You're BAD !</span>
+                    answersIsTrue === false &&
+                    <span className="red"> Try again !</span>
                 }
             </h3>
             {
@@ -85,7 +53,6 @@ function Question(props) {
             {
                 questionInfos.type === "bool" && 
                 <BoolAnswers
-                    correctAnswers={questionInfos.correctAnswers}
                     proposedAnswers={proposedAnswers}
                     setProposedAnswers={setProposedAnswers}
                 />
