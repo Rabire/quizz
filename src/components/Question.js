@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import './Question.css'
 
+import MultipleAnswers from './MultipleAnswers'
+
 
 function Question(props) {
     const questionInfos = props.questionInfos
@@ -19,28 +21,15 @@ function Question(props) {
         }
     }
 
-    //console.log(proposedAnswers)
 
-    function toggleCheckAnswer(answerIndex) {
-        if (proposedAnswers.includes(answerIndex)) {
-            setProposedAnswers(proposedAnswers.filter((proposedAnswer) => (proposedAnswer !== answerIndex))) //remove value from proposedAnswers Array
-        } else {
-            setProposedAnswers([...proposedAnswers, answerIndex]) //push answerIndex in proposedAnswers Array
-        }
-    }
-
-    const answersList = questionInfos.answers.map((answer, index) => 
-    <div
-        key={index}
-        className="answer"
-        onClick={() => toggleCheckAnswer(index)}
-    >
-        {
-            proposedAnswers.includes(index) &&
-            <span>[X] </span>
-        }
-        {answer}
-    </div>)
+    const multipleAnswersList = questionInfos.answers.map((answer, index) =>
+        <MultipleAnswers
+            key={index}
+            proposedAnswers={proposedAnswers}
+            setProposedAnswers={setProposedAnswers}
+            answer={answer}
+            index={index}
+        />)
 
     return(
         <div className="question">
@@ -53,7 +42,7 @@ function Question(props) {
             </h3>
             {
                 questionInfos.type === "multiple" && 
-                answersList
+                multipleAnswersList
             }
             <div className="submit-btn" onClick={verrifyAnswers}>
                 Vérifier
