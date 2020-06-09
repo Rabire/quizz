@@ -26,8 +26,14 @@
         {
             "id": 3,
             "type": "bool",
-            "question": "Rabire habite en France ?",
+            "question": "Rabire porte un T-shirt rouge ?",
+            "correctAnswers": false
+        },
+        {
+            "id": 4,
+            "type": "bool",
+            "question": "Yann est le frère de Cédric",
             "correctAnswers": true
-            }
+        }
     ]
 }

@@ -2,20 +2,21 @@ import React from 'react'
 
 function BoolAnswers(props) {
 
-    function toggleCheckAnswer(answerIndex) {
-        if (props.proposedAnswers.includes(answerIndex)) {
-            props.setProposedAnswers(props.proposedAnswers.filter((proposedAnswer) => (proposedAnswer !== answerIndex))) //remove value from proposedAnswers Array
-        } else {
-            props.setProposedAnswers([...props.proposedAnswers, answerIndex]) //push answerIndex in proposedAnswers Array
-        }
-    }
 
     return(
         <div>
-            <div className="answer">
+            <div className="answer" onClick={() => props.setProposedAnswers(true)}>
+            {
+                props.proposedAnswers === true &&
+                <span>[X] </span>
+            }
                 Vrai
             </div>
-            <div className="answer">
+            <div className="answer" onClick={() => props.setProposedAnswers(false)}>
+            {
+                props.proposedAnswers === false &&
+                <span>[X] </span>
+            }
                 Faux
             </div>
         </div>
