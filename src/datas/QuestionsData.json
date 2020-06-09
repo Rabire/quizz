@@ -22,6 +22,12 @@
                 "Perpignan"
             ],
             "correctAnswers": "Paris"
-        }
+        },
+        {
+            "id": 3,
+            "type": "bool",
+            "question": "Rabire habite en France ?",
+            "correctAnswers": true
+            }
     ]
 }

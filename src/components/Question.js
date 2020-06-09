@@ -1,16 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Question.css'
 
 import MultipleAnswers from './MultipleAnswers'
+import BoolAnswers from './BoolAnswers'
 
 
 function Question(props) {
     const questionInfos = props.questionInfos
+    console.log(questionInfos)
     const [proposedAnswers, setProposedAnswers] = useState([])
     const [answersIsTrue, setAnswersIsTrue] = useState(false)
 
-    const indexOfCorrectAnswer = questionInfos.answers.indexOf(questionInfos.correctAnswers)
+    const [indexOfCorrectAnswer, setIndexOfCorrectAnswer] = useState()
+
+
+    useEffect( () => {
+        if (questionInfos.type === "multiple") {
+            setIndexOfCorrectAnswer(questionInfos.answers.indexOf(questionInfos.correctAnswers))
+        }
+    }, [])
+
+    //const indexOfCorrectAnswer = questionInfos.answers.indexOf(questionInfos.correctAnswers)
 
     function verrifyAnswers() {
         console.log("verrifyAnswers")
@@ -21,8 +32,9 @@ function Question(props) {
         }
     }
 
-
-    const multipleAnswersList = questionInfos.answers.map((answer, index) =>
+    let multipleAnswersList
+    if (questionInfos.type === "multiple") {
+        multipleAnswersList = questionInfos.answers.map((answer, index) =>
         <MultipleAnswers
             key={index}
             proposedAnswers={proposedAnswers}
@@ -30,6 +42,8 @@ function Question(props) {
             answer={answer}
             index={index}
         />)
+    }
+
 
     return(
         <div className="question">
@@ -44,8 +58,14 @@ function Question(props) {
                 questionInfos.type === "multiple" && 
                 multipleAnswersList
             }
+            {
+                questionInfos.type === "bool" && 
+                <BoolAnswers
+                    correctAnswers={questionInfos.correctAnswers}
+                />
+            }
             <div className="submit-btn" onClick={verrifyAnswers}>
-                Vérifier
+                <b>Vérifier</b>
             </div>
         </div>
     )
